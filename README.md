@@ -10,3 +10,4 @@ This is my attempt to code a neural network from scratch after studying how deep
 
 ## Loss functions
 * MSE (Mean squared error)
+* Binary cross entropy

@@ -4,7 +4,7 @@ This is my attempt to code a neural network from scratch after studying how deep
 
 ## Activation functions
 * Linear (Identity)
-* Sigmoid
+* Sigmoid (Logistic)
 * ReLU (Rectified linear unit)
 * TanH
 

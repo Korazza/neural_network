@@ -2,8 +2,12 @@ from neural_network import layers, model, losses
 import numpy as np
 from matplotlib import pyplot as plt
 
+# Testing my neural_network module with XOR problem
 
+# inputs
 x = [[0, 0], [0, 1], [1, 0], [1, 1]]
+
+# labels
 y = [0, 1, 1, 0]
 
 model = model.Model(loss="mean_squared_error")

@@ -7,4 +7,4 @@ class MeanSquaredError(Loss):
         return np.sum(np.square(y_true - y_pred)) / y_true.size
 
     def d(self, y_true: np.ndarray, y_pred: np.ndarray):
-        return -2 * np.sum(y_true - y_pred)
+        return -2.0 * np.sum(y_true - y_pred)

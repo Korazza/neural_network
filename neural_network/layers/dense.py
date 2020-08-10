@@ -21,14 +21,14 @@ class Dense(Layer):
         self.input_shape = input_shape
         if input_shape:
             self.init_weights()
-        self.biases = np.random.randn(1, units)
+        self.biases = 0.01 * np.random.randn(1, units)
 
     def set_input_shape(self, input_shape):
         self.input_shape = input_shape
         self.init_weights()
 
     def init_weights(self):
-        self.weights = 0.1 * np.random.randn(self.input_shape, self.units)
+        self.weights = 0.01 * np.random.randn(self.input_shape, self.units)
 
     def forward(self, inputs):
         self.z = np.dot(inputs, self.weights) + self.biases

@@ -8,5 +8,5 @@ This is my attempt to code a neural network from scratch after studying how deep
 * ReLU (Rectified linear unit)
 * TanH
 
-# Loss functions
+## Loss functions
 * MSE (Mean squared error)

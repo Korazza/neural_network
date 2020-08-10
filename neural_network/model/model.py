@@ -77,10 +77,9 @@ class Model:
             dcost_dpred = self.loss.d(y, prediction)
             self.backpropagate(learning_rate, dcost_dpred, x)
             if verbose >= 2:
-                print("\nEpoch", epoch)
-                print("\nCost:", cost)
+                print("\nEpoch", epoch+1, "| Cost:", cost)
         if verbose >= 1:
-            print("\nLast Cost:", costs[-1])
+            print("\nAverage Cost:", np.mean(costs))
             plt.plot(costs)
             plt.xlabel("Epochs")
             plt.ylabel("Cost")

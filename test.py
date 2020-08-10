@@ -10,11 +10,11 @@ x = [[0, 0], [0, 1], [1, 0], [1, 1]]
 y = [0, 1, 1, 0]
 
 model = model.Model(loss="binary_cross_entropy")
-model.add(layers.Dense(2, input_shape=2), activation="relu"))
-model.add(layers.Dense(2, activation="relu"))
+model.add(layers.Dense(2, input_shape=2, activation="sigmoid"))
+model.add(layers.Dense(2, activation="sigmoid"))
 model.add(layers.Dense(1, activation="sigmoid"))
 
-model.train(x, y, learning_rate=0.0001, epochs=200000, verbose=1)
+model.train(x, y, learning_rate=0.01, epochs=100000, verbose=2)
 
 for x_test in x:
     print(x_test, model.predict(x_test))

@@ -1,4 +1,4 @@
-from neural_network import layers, model, losses
+from neural_network import layers, model
 import numpy as np
 from matplotlib import pyplot as plt
 

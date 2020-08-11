@@ -28,7 +28,9 @@ class Dense(Layer):
         self.init_weights()
 
     def init_weights(self):
-        self.weights = np.random.randn(self.input_dim, self.units) * np.sqrt( 2 / (self.input_dim + self.units))
+        self.weights = np.random.randn(self.input_dim, self.units) * np.sqrt(
+            2 / (self.input_dim + self.units)
+        )
 
     def forward(self, inputs):
         self.z = np.dot(inputs, self.weights) + self.biases

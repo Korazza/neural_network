@@ -13,7 +13,9 @@ class Layer(ABC):
     ):
         self.units = units
         self.activation = (
-            getattr(getattr(__import__("neural_network"), "activation"), activation.title())()
+            getattr(
+                getattr(__import__("neural_network"), "activation"), activation.title()
+            )()
             if isinstance(activation, str)
             else activation
         )

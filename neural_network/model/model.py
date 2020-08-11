@@ -45,7 +45,9 @@ class Model:
                 print("\nLayer {} output:\n".format(layer.id), z)
         return z
 
-    def backpropagate(self, learning_rate: float, dcost_dpred: np.ndarray, x: np.ndarray):
+    def backpropagate(
+        self, learning_rate: float, dcost_dpred: np.ndarray, x: np.ndarray
+    ):
         for i in reversed(range(len(self.layers))):
             layer = self.layers[i]
             prev_layer = self.layers[i - 1] if i > 0 else None
@@ -59,7 +61,14 @@ class Model:
             layer.weights -= learning_rate * dcost_dw
             layer.biases -= learning_rate * dcost_db
 
-    def train(self, xs: list, ys: list, learning_rate: float = 0.01, epochs: int = 1, verbose: int = 0):
+    def train(
+        self,
+        xs: list,
+        ys: list,
+        learning_rate: float = 0.01,
+        epochs: int = 1,
+        verbose: int = 0,
+    ):
         xs = np.array(xs).astype(float)
         ys = np.array(ys).astype(float)
         costs = []
@@ -82,7 +91,7 @@ class Model:
             plt.ylabel("Cost")
             plt.show()
 
-    def plot_decision_boundary(self, x, y, steps=1000, cmap='RdYlBu'):
+    def plot_decision_boundary(self, x, y, steps=1000, cmap="RdYlBu"):
         cmap = plt.get_cmap(cmap)
         x = np.array(x)
         y = np.array(y)

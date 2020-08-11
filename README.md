@@ -15,8 +15,8 @@ This is my attempt to code a neural network from scratch after studying how deep
 # Example: XOR
 To test my module, I tried to train a network predicting the XOR gate output
 
-<p align="center">`Cost over epochs`</p>
+## `Cost over epochs`
 ![Imgur](https://i.imgur.com/VXcARZu.png)
 
-<p align="center">`Decision boundary output`</p>
+## `Decision boundary output`
 ![Imgur](https://i.imgur.com/wLL6cOD.png)

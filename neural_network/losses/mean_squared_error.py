@@ -3,8 +3,8 @@ import numpy as np
 
 
 class MeanSquaredError(Loss):
-    def f(self, y_true: np.ndarray, y_pred: np.ndarray):
+    def __call__(self, y_true: np.ndarray, y_pred: np.ndarray):
         return np.sum(np.square(y_true - y_pred)) / y_true.size
 
-    def d(self, y_true: np.ndarray, y_pred: np.ndarray):
+    def derivative(self, y_true: np.ndarray, y_pred: np.ndarray):
         return -2.0 * np.sum(y_true - y_pred)

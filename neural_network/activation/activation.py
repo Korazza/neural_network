@@ -4,9 +4,9 @@ import numpy as np
 
 class Activation(ABC):
     @abstractmethod
-    def f(self) -> np.ndarray:
+    def __call__(self) -> np.ndarray:
         pass
 
     @abstractmethod
-    def d(self) -> np.ndarray:
+    def derivative(self) -> np.ndarray:
         pass

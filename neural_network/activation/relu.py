@@ -3,8 +3,8 @@ import numpy as np
 
 
 class Relu(Activation):
-    def f(self, z: np.ndarray):
+    def __call__(self, z: np.ndarray):
         return np.maximum(0, z)
 
-    def d(self, z: np.ndarray):
+    def derivative(self, z: np.ndarray):
         return np.greater(z, 0).astype(float)

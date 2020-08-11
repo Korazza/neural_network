@@ -3,8 +3,8 @@ import numpy as np
 
 
 class Tanh(Activation):
-    def f(self, z: np.ndarray):
+    def __call__(self, z: np.ndarray):
         return np.tanh(z)
 
-    def d(self, z: np.ndarray):
-        return 1.0 - self.f(z) ** 2
+    def derivative(self, z: np.ndarray):
+        return 1.0 - self(z) ** 2

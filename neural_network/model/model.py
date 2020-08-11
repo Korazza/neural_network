@@ -49,7 +49,7 @@ class Model:
         for i in range(len(self.layers)):
             layer = self.layers[-i - 1]
             prev_layer = self.layers[-i - 2] if i < len(self.layers) - 1 else None
-            dpred_dz = layer.activation.d(layer.z)
+            dpred_dz = layer.activation.derivative(layer.z)
             dz_dw = prev_layer.output.T if prev_layer else x.T
             dz_db = 1
             dcost_dw = dcost_dpred * dpred_dz * dz_dw
@@ -72,15 +72,16 @@ class Model:
             x = xs[index]
             y = ys[index]
             prediction = self.predict(x)
-            cost = self.loss.f(y, prediction)
+            cost = self.loss(y, prediction)
             costs.append(cost)
-            dcost_dpred = self.loss.d(y, prediction)
+            dcost_dpred = self.loss.derivative(y, prediction)
             self.backpropagate(learning_rate, dcost_dpred, x)
             if verbose >= 2:
                 print("Epoch {} | Cost: {}".format(epoch + 1, cost), end="\r")
         if verbose >= 1:
-            print("Cost: {}\n".format(np.mean(costs)))
+            print("Training results | Average Cost: {}\n".format(np.mean(costs)))
             plt.plot(costs)
+            plt.title("Cost over Epochs")
             plt.xlabel("Epochs")
             plt.ylabel("Cost")
             plt.show()
@@ -100,4 +101,5 @@ class Model:
         ax.contourf(xx, yy, z, cmap=cmap, alpha=0.5)
         train_labels = self.predict(x)
         ax.scatter(x[:, 0], x[:, 1], c=y, cmap=cmap, lw=0)
+        plt.title("Decision boundary output")
         plt.show()

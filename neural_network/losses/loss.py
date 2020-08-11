@@ -4,9 +4,9 @@ import numpy as np
 
 class Loss(ABC):
     @abstractmethod
-    def f(self) -> float:
+    def __call__(self) -> float:
         pass
 
     @abstractmethod
-    def d(self) -> float:
+    def derivative(self) -> float:
         pass

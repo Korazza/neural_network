@@ -46,9 +46,9 @@ class Model:
         return z
 
     def backpropagate(self, learning_rate: float, dcost_dpred: np.ndarray, x: np.ndarray):
-        for i in range(len(self.layers)):
-            layer = self.layers[-i - 1]
-            prev_layer = self.layers[-i - 2] if i < len(self.layers) - 1 else None
+        for i in reversed(range(len(self.layers))):
+            layer = self.layers[i]
+            prev_layer = self.layers[i - 1] if i > 0 else None
             dpred_dz = layer.activation.derivative(layer.z)
             dz_dw = prev_layer.output.T if prev_layer else x.T
             dz_db = 1
@@ -56,12 +56,8 @@ class Model:
             dcost_db = dcost_dpred * dpred_dz * dz_db
             new_weights = []
             new_biases = []
-            for w in range(len(layer.weights)):
-                new_weights.append(layer.weights[w] - learning_rate * dcost_dw[w])
-            for b in range(len(layer.biases)):
-                new_biases.append(layer.biases[b] - learning_rate * dcost_db[b])
-            layer.weights = np.array(new_weights)
-            layer.biases = np.array(new_biases)
+            layer.weights -= learning_rate * dcost_dw
+            layer.biases -= learning_rate * dcost_db
 
     def train(self, xs: list, ys: list, learning_rate: float = 0.01, epochs: int = 1, verbose: int = 0):
         xs = np.array(xs).astype(float)

@@ -8,7 +8,7 @@ class Layer(ABC):
     def __init__(
         self,
         units: int,
-        input_shape: int = None,
+        input_dim: int = None,
         activation: Union[str, Activation] = "linear",
     ):
         self.units = units
@@ -29,7 +29,7 @@ class Layer(ABC):
         print("\nActivation:", self.activation.__class__.__name__)
 
     @abstractmethod
-    def set_input_shape(self):
+    def set_input_dim(self):
         pass
 
     @abstractmethod

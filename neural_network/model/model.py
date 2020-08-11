@@ -24,11 +24,11 @@ class Model:
         )
 
     def add(self, layer: Layer):
-        if not layer.input_shape:
+        if not layer.input_dim:
             if len(self.layers) > 0:
-                layer.set_input_shape(self.layers[-1].units)
+                layer.set_input_dim(self.layers[-1].units)
             else:
-                raise Exception("First layer has no input_shape")
+                raise Exception("First layer has no input_dim")
         self.layers.append(layer)
 
     def summary(self):
@@ -77,10 +77,27 @@ class Model:
             dcost_dpred = self.loss.d(y, prediction)
             self.backpropagate(learning_rate, dcost_dpred, x)
             if verbose >= 2:
-                print("\nEpoch", epoch+1, "| Cost:", cost)
+                print("Epoch {} | Cost: {}".format(epoch + 1, cost), end="\r")
         if verbose >= 1:
-            print("\nAverage Cost:", np.mean(costs))
+            print("Cost: {}\n".format(np.mean(costs)))
             plt.plot(costs)
             plt.xlabel("Epochs")
             plt.ylabel("Cost")
             plt.show()
+
+    def plot_decision_boundary(self, x, y, steps=1000, cmap='RdYlBu'):
+        cmap = plt.get_cmap(cmap)
+        x = np.array(x)
+        y = np.array(y)
+        xmin, xmax = x[:, 0].min() - 1, x[:, 0].max() + 1
+        ymin, ymax = x[:, 1].min() - 1, x[:, 1].max() + 1
+        x_span = np.linspace(xmin, xmax, steps)
+        y_span = np.linspace(ymin, ymax, steps)
+        xx, yy = np.meshgrid(x_span, y_span)
+        labels = self.predict(np.c_[xx.ravel(), yy.ravel()])
+        z = labels.reshape(xx.shape)
+        fig, ax = plt.subplots()
+        ax.contourf(xx, yy, z, cmap=cmap, alpha=0.5)
+        train_labels = self.predict(x)
+        ax.scatter(x[:, 0], x[:, 1], c=y, cmap=cmap, lw=0)
+        plt.show()

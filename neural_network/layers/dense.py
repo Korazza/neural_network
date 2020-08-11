@@ -11,24 +11,24 @@ class Dense(Layer):
     def __init__(
         self,
         units: int,
-        input_shape: int = None,
+        input_dim: int = None,
         activation: Union[str, Activation] = "linear",
     ):
-        Layer.__init__(self, units, input_shape, activation)
+        Layer.__init__(self, units, input_dim, activation)
         global id_counter
         self.set_id(id_counter)
         id_counter += 1
-        self.input_shape = input_shape
-        if input_shape:
+        self.input_dim = input_dim
+        if input_dim:
             self.init_weights()
-        self.biases = 0.01 * np.random.randn(1, units)
+        self.biases = np.zeros((1, units))
 
-    def set_input_shape(self, input_shape):
-        self.input_shape = input_shape
+    def set_input_dim(self, input_dim):
+        self.input_dim = input_dim
         self.init_weights()
 
     def init_weights(self):
-        self.weights = 0.01 * np.random.randn(self.input_shape, self.units)
+        self.weights = np.random.randn(self.input_dim, self.units) * np.sqrt( 2 / (self.input_dim + self.units))
 
     def forward(self, inputs):
         self.z = np.dot(inputs, self.weights) + self.biases

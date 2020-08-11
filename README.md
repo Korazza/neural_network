@@ -11,3 +11,9 @@ This is my attempt to code a neural network from scratch after studying how deep
 ## Loss functions
 * MSE (Mean squared error)
 * Binary cross entropy
+
+# Example: XOR
+To test my module, I tried to train a network predicting the XOR gate output
+
+[Imgur](https://i.imgur.com/VXcARZu.png)
+[Imgur](https://i.imgur.com/wLL6cOD.png)

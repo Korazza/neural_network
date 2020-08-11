@@ -1,5 +1,6 @@
 from neural_network import layers, model
 from matplotlib import pyplot as plt
+import numpy as np
 
 # Testing my neural_network module with XOR problem
 
@@ -9,12 +10,11 @@ x = [[0, 0], [0, 1], [1, 0], [1, 1]]
 # labels
 y = [0, 1, 1, 0]
 
-model = model.Model(loss="binary_cross_entropy")
-model.add(layers.Dense(2, input_shape=2, activation="sigmoid"))
-model.add(layers.Dense(2, activation="sigmoid"))
+model = model.Model(loss="mean_squared_error")
+model.add(layers.Dense(3, input_dim=2, activation="sigmoid"))
+model.add(layers.Dense(3, activation="sigmoid"))
 model.add(layers.Dense(1, activation="sigmoid"))
 
-model.train(x, y, learning_rate=0.01, epochs=100000, verbose=2)
+model.train(x, y, learning_rate=0.01, epochs=80000, verbose=2)
 
-for x_test in x:
-    print(x_test, model.predict(x_test))
+model.plot_decision_boundary(x, y)

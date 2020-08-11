@@ -15,5 +15,5 @@ This is my attempt to code a neural network from scratch after studying how deep
 # Example: XOR
 To test my module, I tried to train a network predicting the XOR gate output
 
-[Imgur](https://i.imgur.com/VXcARZu.png)
-[Imgur](https://i.imgur.com/wLL6cOD.png)
+![Imgur](https://i.imgur.com/VXcARZu.png)
+![Imgur](https://i.imgur.com/wLL6cOD.png)
